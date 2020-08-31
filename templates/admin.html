@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{messages}}</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif  %}
+{% endwith%}
+
+
+<div class="administrator">
+
+
+
+<form action="/add_contact" method="POST" class="form">
+    <input type="text" name="nombre" placeholder="Fullname">
+    <input type="text" name="telefono" placeholder="Fhone">
+    <input type="text" name="email" placeholder="Email">
+    <button type="submit">
+        SAVE
+    </button>
+</form>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre Completo</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Email</th>
+        <th scope="col">operaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% set cnt=0 -%}
+        {% for contact in contacts %}   
+        <tr>
+            <th scope="row"> {{loop.index}}</th>
+            <td>{{contact.1}}</td>
+            <td>{{contact.2}}</td>
+            <td>{{contact.3}}</td>
+            <td><a href="/edit/{{contact.0}}">edit</a>
+            <a href="/delete/{{contact.0}}" class="btn-delete" id="delete-user-{{contact.0}}">delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+  <div class="btn-salir">
+    <div class="btn">
+      <form action="/usuario" method="GET">
+        <button type="button submit" class="btn btn-outline-success">Ver mis pedidos</button>
+      </form>
+    </div>
+    {% if (session['order']) %}
+    <div class="btn">
+      <form action="/carrito" method="GET">
+        <button type="button submit" class="btn btn-outline-success">Ver Carrito</button>
+      </form>
+    </div>
+    {% endif %}
+    <div class="btn">
+      <form action="/salir" method="GET">
+        <button type="button submit" class="btn btn-danger">Salir</button>
+      </form>
+    </div>
+
+    
+  </div>
+
+  {% if not (session['order']) %}
+  <form id="login-form" class="form" action="/createorder" method="POST">
+    <h3 class="text-center">Generar pedido</h3>
+      <div class="form-group">
+        <label for="municipio">Para crear su pedido seleccion una sede:</label><br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Options</label>
+            </div>
+            <select name="sedes" class="municipio" id="inputGroupSelect01">
+              <option selected>Choose...</option>
+              {% for sede in sedes %} 
+              <option value="{{sede.0}}">{{sede.1}} {{sede.2}}</option>
+              {% endfor %}
+            </select>
+          </div>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" name="submit" class="btn btn-success btn-md" value="Cear pedido">
+    </div>
+</form>
+{% endif %}
+
+  </div>
+
+
+
+{% endblock %}

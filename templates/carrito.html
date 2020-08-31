@@ -1,0 +1,125 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{messages}}</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif  %}
+{% endwith%}
+
+
+<div class="administrator">
+
+<div class="container content-center">
+  <h1>CARRITO</h1>
+  {% if detalles==0 %}
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item">id-Factura: {{cabecera.1}}</li>
+    <li class="list-group-item">Nombre Titular: {{cabecera.6}}</li>
+    <li class="list-group-item">Telefono: {{cabecera.7}}</li>
+    <li class="list-group-item">Direccion: {{cabecera.8}}</li>
+    <li class="list-group-item">Barrio: {{cabecera.9}}</li>
+    <li class="list-group-item">Email: {{cabecera.10}}</li>
+  </ul>
+
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item">Nombre-Sede: {{cabecera.3}}</li>
+    <li class="list-group-item">Dirección: {{cabecera.4}}</li>
+    <li class="list-group-item">Estado Pedido: {{cabecera.2}}</li>
+    {% if cabecera.11 %}
+    <li class="list-group-item">Creación: {{cabecera.11}}</li>
+    {% elif cabecera.12 %}
+    <li class="list-group-item">Solicitación: {{cabecera.12}}</li>
+    {% elif cabecera.13 %}
+    <li class="list-group-item">Despacho: {{cabecera.13}}</li>
+    {% elif cabecera.14 %}
+    <li class="list-group-item">Finalización: {{cabecera.14}}</li>
+    {% endif %}
+  </ul>
+  <h5>Total: $ 0 </h5>
+
+  {% else %}
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item">id-Factura: {{cabecera.1}}</li>
+    <li class="list-group-item">Nombre Titular: {{cabecera.6}}</li>
+    <li class="list-group-item">Telefono: {{cabecera.7}}</li>
+    <li class="list-group-item">Direccion: {{cabecera.8}}</li>
+    <li class="list-group-item">Barrio: {{cabecera.9}}</li>
+    <li class="list-group-item">Email: {{cabecera.10}}</li>
+  </ul>
+
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item">Nombre-Sede: {{cabecera.3}}</li>
+    <li class="list-group-item">Dirección: {{cabecera.4}}</li>
+    <li class="list-group-item">Estado Pedido: {{cabecera.2}}</li>
+    {% if cabecera.11 %}
+    <li class="list-group-item">Creación: {{cabecera.11}}</li>
+    {% endif %}
+    {% if cabecera.12 %}
+    <li class="list-group-item">Solicitación: {{cabecera.12}}</li>
+    {% endif %}
+    {% if cabecera.13 %}
+    <li class="list-group-item">Despacho: {{cabecera.13}}</li>
+    {% endif %}
+    {% if cabecera.14 %}
+    <li class="list-group-item">Finalización: {{cabecera.14}}</li>
+    {% endif %}
+  </ul>
+  <h5>Total: $ {{cabecera.0}}</h5>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre Producto: </th>
+        <th scope="col">Precio: </th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">operaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% set cnt=0 -%}
+        {% for detalle in detalles %}   
+        <tr>
+            <th scope="row"> {{loop.index}}</th>
+            <td>{{detalle.0}}</td>
+            <td>{{detalle.1}}</td>
+            <td>{{detalle.2}}</td>
+            <td><a href="/addproduct/{{detalle.4}}">edit</a>
+            <a href="#" class="btn-delete" id="as">delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+  <form action="/solicitarpedido" method="POST" class="form">
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" name="idpedido" type="checkbox" value="{{cabecera.1}}" id="invalidCheck2" required>
+        <label class="form-check-label" for="invalidCheck2">
+          Acepto los terminos y condiciones
+        </label>
+      </div>
+    </div>
+    <button class="btn btn-success" type="submit">Finalizar pedido</button>
+  </form>
+
+  {% endif %}
+
+
+</div>
+
+  </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{messages}}</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif  %}
+{% endwith%}
+
+
+<div class="administrator">
+
+<div class="container content-center">
+
+    <form id="login-form" class="form" action="/createorder" method="POST">
+        <h3 class="text-center">Generar pedido</h3>
+          <div class="form-group">
+            <label for="municipio">Para crear su pedido seleccion una sede:</label><br>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select name="sedes" class="municipio" id="inputGroupSelect01">
+                  <option selected>Choose...</option>
+                  {% for sede in sedes %} 
+                  <option value="{{sede.0}}">{{sede.1}} {{sede.2}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-success btn-md" value="Cear pedido">
+        </div>
+    </form>
+
+</div>
+
+  </div>
+
+
+
+{% endblock %}

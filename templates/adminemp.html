@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{messages}}</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif  %}
+{% endwith%}
+
+
+<div class="administrator">
+
+
+
+<form action="/add_contact" method="POST" class="form">
+    <input type="text" name="nombre" placeholder="Fullname">
+    <input type="text" name="telefono" placeholder="Fhone">
+    <input type="text" name="email" placeholder="Email">
+    <button type="submit">
+        SAVE
+    </button>
+</form>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre Completo</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Email</th>
+        <th scope="col">operaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% set cnt=0 -%}
+        {% for contact in contacts %}   
+        <tr>
+            <th scope="row"> {{loop.index}}</th>
+            <td>{{contact.1}}</td>
+            <td>{{contact.2}}</td>
+            <td>{{contact.3}}</td>
+            <td><a href="/edit/{{contact.0}}">edit</a>
+            <a href="/delete/{{contact.0}}" class="btn-delete" id="delete-user-{{contact.0}}">delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+  <div class="btn-salir">
+    
+    {% if tipo %}
+    <div class="btn">
+        <form action="/registeremp" method="POST">
+          <button type="button submit" class="btn btn-outline-success">Registrar empleado nuevo</button>
+        </form>
+      </div>
+    {% endif %}
+    
+    <div class="btn">
+      <form action="/empleado" method="GET">
+        <button type="button submit" class="btn btn-outline-success">Pedidos por despachar</button>
+      </form>
+    </div>
+    <div class="btn">
+      <form action="/empleadofinalizar" method="GET">
+        <button type="button submit" class="btn btn-outline-success">Pedidos por finalizar</button>
+      </form>
+    </div>
+    <div class="btn">
+      <form action="/salir" method="GET">
+        <button type="button submit" class="btn btn-danger">Salir</button>
+      </form>
+    </div>
+
+    
+  </div>
+
+
+  </div>
+
+
+
+{% endblock %}

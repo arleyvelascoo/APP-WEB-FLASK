@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{messages}}</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif  %}
+{% endwith%}
+
+<div class="administrator">
+
+  
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for pedido in pedidos %}  
+    <div class="col mb-4">
+      <div class="card">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item">Nombre Titular: {{pedido.6}}</li>
+            <li class="list-group-item">Direccion: {{pedido.8}}</li>
+            <li class="list-group-item">Barrio: {{pedido.9}}</li>
+          </ul>
+        
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item">Estado Pedido: {{pedido.2}}</li>
+            {% if pedido.11 %}
+            <li class="list-group-item">Creación: {{pedido.11}}</li>
+            {% endif %}
+            {% if pedido.12 %}
+            <li class="list-group-item">Solicitación: {{pedido.12}}</li>
+            {% endif %}
+            {% if pedido.13 %}
+            <li class="list-group-item">Despacho: {{pedido.13}}</li>
+            {% endif %}
+            {% if pedido.14 %}
+            <li class="list-group-item">Finalización: {{pedido.14}}</li>
+            {% endif %}
+          </ul>
+        <div class="card-body">
+          <h5 class="card-title">{{pedido.1}} Nombre Titular: {{pedido.6}}</h5>
+          <p class="card-text">Precio: {{pedido.0}}</p>
+          <a href="/gestionarpedidoemp/{{pedido.1}}" class="btn btn-outline-success">Gestionar pedido</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  
+  </div>
+ 
+
+
+
+{% endblock %}

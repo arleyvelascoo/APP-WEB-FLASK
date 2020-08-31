@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{messages}}</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif  %}
+{% endwith%}
+
+<div class="administrator">
+
+  
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for fruta in frutas %}  
+    <div class="col mb-4">
+      <div class="card">
+        <img src="{{fruta.4}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{fruta.1}} Precio: ${{fruta.2}}</h5>
+          <p class="card-text">{{fruta.3}}</p>
+          <a href="/addproduct/{{fruta.0}}" class="btn btn-outline-success">Añadir al carrito</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% set cnt=0 -%}
+        {% for fruta in frutas %}   
+        <tr>
+            <th scope="row"> {{loop.index}}</th>
+            <td>{{fruta.0}}</td>
+            <td>{{fruta.1}}</td>
+            <td>{{fruta.2}}</td>
+            <td>{{fruta.3}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>  
+
+
+  
+  </div>
+ 
+
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{messages}}</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif  %}
+{% endwith%}
+
+<div class="administrator">
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% set cnt=0 -%}
+        {% for fruta in frutas %}   
+        <tr>
+            <th scope="row"> {{loop.index}}</th>
+            <td>{{fruta.0}}</td>
+            <td>{{fruta.1}}</td>
+            <td>{{fruta.2}}</td>
+            <td>{{fruta.3}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>  
+  </div>
+{% endblock %}

@@ -1,0 +1,296 @@
+body {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+h1{
+    font-size: 66px; font-weight: 600px; line-height: 88px;
+}
+
+h2{
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 18px; color: #999999;
+    line-height : 30px;
+    margin-bottom: 0;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.table{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.administrator{
+    margin-top: 90px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.form{
+    margin-top: 20px;
+    padding-top: 90px;
+
+}
+
+.topmargin-xs{margin-top: 15px;}
+.topmargin-sm{margin-top: 30px;}
+.topmargin-lg{margin-top: 60px;}
+
+.btn {
+    font-size: 14px;
+    padding: 15px 26px;
+    min-width: 160px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.btn-salir{
+    position: absolute;
+    top: 150px;
+    right: 100px;
+}
+
+.btn-light{
+    background-color: white;
+    color: black;
+    border: 2px solid white;
+}
+
+.btn i{
+    font-size: 14px; margin-left: 5px;
+}
+
+.text-dark{
+    color: black;
+}
+
+.navbar{
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(31, 22, 22, 0.05);
+    min-height: 100px;
+}
+
+.nav-link {
+    color : #1a1a1a;
+}
+
+.nav-link:hover {
+    color: black;
+}
+
+.logo-brand {
+    min-width: 160px;
+    max-width: 180px;
+}
+.navbar-brand{
+    color:black;
+}
+.navbar-brand:hover{
+    color:green;
+}
+
+.navbar-toggler { font-size: 40px;}
+.navbar-toggler:focus{ outline: none;}
+
+#hero {
+    background-image: url('../imgs/principal.jpg');
+    background-size: cover;
+    padding-top: 90px;
+    min-height: 700px;
+    color: white;
+}
+
+#login{
+    margin-bottom: 250px;
+}
+
+#hero p {
+    color: white;
+}
+
+.slider p {
+    color: white;
+}
+.slider h1 {
+    color: white;
+}
+
+.container-fluid{
+    margin-bottom: 50px;
+}
+
+.content-center {
+    max-width: 800px;
+    margin: 0 auto 0px auto;
+    background-size: cover;
+    padding: 90px 0 90px 0;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;        
+}
+
+.page-footer {
+    color: white;
+    background-image: linear-gradient(180deg, #FFFFFF, black);
+    margin: auto auto;
+}
+
+a{
+    color: black;
+}
+
+.page-footer .btn{
+    font-size: 2em;
+    padding: 1em 1em;
+    min-width: 160px;
+    border-radius: 2px;
+    display: inline-block;
+    color: black;
+}
+
+.py-5{
+    display: inherit;
+}
+
+
+.centfooter{
+    margin: 0 auto;
+}
+
+.ccopyright {
+    background-color: black;
+}
+
+.portafolio-container{
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0;
+    border-radius: 2px;
+    max-height: 484px;
+}
+
+.portafolio-container img{
+    -moz-transition: all 0.8s;
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+    
+}
+
+.portafolio-container:hover img {
+    -moz-transform: scaler(1.2);
+    -webkit-transform: scaler(1.2);
+    transform: scale(1.2);
+}
+
+.portafolio-details {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    z-index: 9000;
+}
+
+.portafolio-details h2{
+    margin-bottom: 0px;
+}
+
+.portafolio-details a h2, .portafolio-details a p {
+    color: white;
+}
+
+.slider {
+	width: 100%;
+	margin: auto;
+    overflow: hidden;
+
+}
+
+.slider img{
+    min-height: 700px;
+    background-size: cover;
+}
+    
+.slider ul {
+	display: flex;
+	padding: 0;
+	width: 400%;
+	
+	animation: cambio 20s infinite alternate linear;
+}
+
+.slider li {
+	width: 100%;
+	list-style: none;
+}
+
+.slider img {
+	width: 100%;
+}
+
+.whatsapp:hover{
+    color:white;
+}
+
+.whatsapp {
+    position:fixed;
+    width:80px;
+    height:80px;
+    bottom:40px;
+    right:40px;
+    background-color:#25d366;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:50px;
+    z-index:100;
+  }
+  
+  .whatsapp-icon {
+    margin: auto auto;
+  }
+@keyframes cambio {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+}
+
+
+
+.card-img-top{
+    max-height: 400px;
+}
+
+
+
+@media (max-width: 575.98px) { h1 {font-size:40px; line-height: normal;} h2 {font-size:40px; line-height: normal;} }
+
+
+@media (min-width: 576px) and (max-width: 767.98px) { }
+
+@media (min-width: 768px) and (max-width: 991.98px) { }
+
+@media (min-width: 992px) and (max-width: 1199.98px) { }
+
+@media (min-width: 1200px) { }
+
+
+
+
+
+
